@@ -1,5 +1,5 @@
 # Python Dockerfile
-FROM python:3.11-bookworm-slim
+FROM python:3.12-bookworm-slim
 
 # Set working directory
 WORKDIR /app

@@ -22,9 +22,9 @@ def before_request():
 def hello():
     return jsonify({
         'message': 'Hello from test-darshan-12!',
-        'service': 'web-service',
+        'service': 'api-service',
         'language': 'python',
-        'python_version': '3.11',
+        'python_version': '3.12',
         'version': '1.0.0',
         'timestamp': datetime.now().isoformat(),
         'uptime_seconds': int((datetime.now() - start_time).total_seconds()),
@@ -55,9 +55,9 @@ def ready():
 def info():
     return jsonify({
         'service': 'test-darshan-12',
-        'type': 'web-service',
+        'type': 'api-service',
         'language': 'python',
-        'python_version': '3.11',
+        'python_version': '3.12',
         'version': '1.0.0',
         'start_time': start_time.isoformat(),
         'port': PORT

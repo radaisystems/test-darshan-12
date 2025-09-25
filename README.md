@@ -1,15 +1,15 @@
 # test-darshan-12
 
-test
+12
 
 ## Overview
 
-This is a web-service built with Python 3.11, created using the Backstage GitHub Repository Generator template.
+This is a api-service built with Python 3.12, created using the Backstage GitHub Repository Generator template.
 
 ## Features
 
-- **Application Type**: web-service
-- **Runtime**: Python 3.11
+- **Application Type**: api-service
+- **Runtime**: Python 3.12
 - **Port**: 3000
 - **Containerized**: Docker support included
 - **Kubernetes Ready**: Helm charts included
@@ -21,7 +21,7 @@ This is a web-service built with Python 3.11, created using the Backstage GitHub
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.12+
 - pip
 - Docker (for containerization)
 - Kubernetes cluster (for deployment)
