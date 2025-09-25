@@ -1,0 +1,142 @@
+# Default values for $test-darshan-12.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: $2
+
+image:
+  repository: $radaisystems/$test-darshan-12
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  runAsUser: 1000
+
+service:
+  type: $ClusterIP
+  port: 80
+  targetPort: $3000
+  nodePort: 30080
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: $test-darshan-12.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: $test-darshan-12-tls
+  #    hosts:
+  #      - $test-darshan-12.local
+
+resources:
+  limits:
+    cpu: $500m
+    memory: $512Mi
+  requests:
+    cpu: $100m
+    memory: $128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: $2
+  maxReplicas: $10
+  targetCPUUtilizationPercentage: $70
+  targetMemoryUtilizationPercentage: $80
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Application specific configuration
+app:
+  port: $3000
+  healthCheck:
+    enabled: true
+    path: /health
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+  readinessProbe:
+    enabled: true
+    path: /ready
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+# Environment variables
+env: []
+  # - name: NODE_ENV
+  #   value: "production"
+  # - name: DATABASE_URL
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: app-secrets
+  #       key: database-url
+
+# ConfigMap data
+configMap: {}
+  # config.yaml: |
+  #   key: value
+
+# Secret data (base64 encoded)
+secrets: {}
+  # database-password: cGFzc3dvcmQ=
+
+# Persistent Volume Claims
+persistence:
+  enabled: false
+  # storageClass: ""
+  # accessMode: ReadWriteOnce
+  # size: 1Gi
+  # mountPath: /data
+
+# Additional containers (sidecars)
+extraContainers: []
+
+# Additional volumes
+extraVolumes: []
+
+# Additional volume mounts
+extraVolumeMounts: []

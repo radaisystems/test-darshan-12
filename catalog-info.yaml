@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: $test-darshan-12
+  description: $test
+  annotations:
+    github.com/project-slug: $radaisystems/$test-darshan-12
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: $web-service
+  owner: group:platform-infra
+  lifecycle: experimental
+  system: platform
+  providesApis: []
+  consumesApis: []
+  dependsOn: []
